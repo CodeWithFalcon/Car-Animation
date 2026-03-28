@@ -1,67 +1,128 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
-    background-image: url('background.jpg');
-    background-size: cover;
+
+body {
+  overflow: hidden;
+  font-family: sans-serif;
 }
-.car{
-    position:absolute;
+
+/* Main Scene */
+.scene {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* SKY */
+.sky {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("assets/background.jpg") no-repeat center center;
+  background-size: cover;
+  z-index: 0;
+}
+
+/* TREES */
+.trees {
+  position: absolute;
+  bottom: 120px;
+  width: 300%;
+  height: 200px;
+  background: url("assets/trees.png") repeat-x;
+  background-size: contain;
+  animation: moveTrees 15s linear infinite;
+  z-index: 1;
+}
+
+/* ROAD */
+.road {
+  position: absolute;
   bottom: 0;
-  top: 85vh;
-  animation: shakebody 1s infinite linear;
+  width: 300%;
+  height: 150px;
+  background: url("assets/track.png") repeat-x;
+  background-size: contain;
+  animation: moveRoad 4s linear infinite;
+  z-index: 2;
 }
-.wheel1 {
-    position: absolute;
-    top: 20vh;
-    left: 10.5vw;
-    animation: wheelrotation .1ms infinite linear;
-  }
-  .wheel2 {
-    position: absolute;
-    top: 21vh;
-    left: 50.5vw;
-    animation: wheelrotation .1ms infinite linear;
-  }
-  .track{
-    animation: trackmove .1s infinite linear;
+
+/* CAR */
+.car {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  animation: carBounce 0.4s ease-in-out infinite alternate;
+}
+
+/* CAR BODY */
+.car-body {
+  width: 280px;
+  display: block;
+}
+
+/* WHEELS */
+.wheel {
+  position: absolute;
+  width: 55px;
+  animation: spin 0.5s linear infinite;
+}
+
+/* Adjust based on your image */
+.left {
+  bottom: -10px;
+  left: 35px;
+}
+
+.right {
+  bottom: -10px;
+  right: 50px;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes moveRoad {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes moveTrees {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-30%); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes carBounce {
+  0% { transform: translate(-50%, 0); }
+  100% { transform: translate(-50%, -5px); }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .car-body {
+    width: 200px;
   }
 
-@keyframes wheelrotation {
-  from {
-    transform: rotate(0deg);
+  .wheel {
+    width: 40px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .trees {
+    height: 150px;
   }
-}
-@keyframes wheelrotation {
-  from {
-    transform: rotate(0deg);
+
+  .road {
+    height: 120px;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes trackmove {
-  from {
-    transform:scalex(5);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes shakebody
-{
-    0%{
-        transform: translateY(-10px);
-    }
-    50%{
-        transform: translateY(20px);
-    }
-    100%{
-        transform: translateY(-20px);
-    }
 }
