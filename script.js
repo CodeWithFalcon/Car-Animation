@@ -1,5 +1,5 @@
 // Create audio
-const audio = new Audio("assets/Sound/sound.mp3");
+const audio = new Audio("accets/Sound/sound.mp3");
 audio.loop = true;
 audio.volume = 0.5;
 
